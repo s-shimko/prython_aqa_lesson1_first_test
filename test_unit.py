@@ -15,16 +15,19 @@ def is_alert_present(wd):
 class test_unit(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
+        # self.wd = WebDriver(firefox_binary="C:/Program Files/Mozilla Firefox/firefox.exe")
+        # self.wd = WebDriver(capabilities={"marionette": False},firefox_binary="C:/Program Files/Mozilla Firefox ESR/firefox.exe")
         self.wd.implicitly_wait(60)
     
     def test_test_unit(self):
         success = True
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
-        # wd.find_element_by_name("user").click()
-        # wd.find_element_by_name("user").clear()
-        # wd.find_element_by_name("user").send_keys("admin")
-        # wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("user").click()
+        el = wd.find_element_by_name("user")
+        el.clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
